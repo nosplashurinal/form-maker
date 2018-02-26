@@ -1,0 +1,30 @@
+.code-editor {
+  width: calc(100% - 32px);
+  position: absolute;
+  bottom: 0;
+  margin: 16px;
+  background: #f2f2f2;
+  height: 33.33vh;
+  border-radius: 4px;
+  border: 1px solid #b3b3b3;
+  display: flex;
+  .html-area, .css-area {
+    flex: 1 1 50%;
+    &:before {
+      position: absolute;
+      padding: 4px;
+      color: #434343;
+      display: inline-block;
+      font-size: 12px;
+      font-family: sans-serif;
+    }
+    &.html-area:before {content: 'HTML:';}
+    &.css-area:before {content: 'CSS:';}
+  }
+  .v-line {
+    flex: none;
+    height: 100%;
+    width: 1px;
+    background: #b3b3b3;
+  }
+}
