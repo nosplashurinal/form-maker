@@ -2,3 +2,17 @@ body {
   margin: 0;
   padding: 0;
 }
+.app {
+  width: calc(100% - 16px);
+  height: calc(100vh - 16px);
+  margin: 8px;
+  position: relative;
+}
+button {
+  padding: 0;
+  margin: 0;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  outline: 0;
+}

@@ -24,25 +24,37 @@ class Canvas extends Component {
   onMouseMove = (e) => {
     const { isDrawing, posX, posY } = this.state;
     isDrawing && this.setState({
-      sizeX: e.clientX - posX,
-      sizeY: e.clientY - posY
+      sizeX: e.clientX - posX >= 0 ? e.clientX - posX : 0,
+      sizeY: e.clientY - posY  >= 0 ? e.clientY - posY : 0
     })
   }
   onMouseUp = () => {
-    const { sizeX, sizeY } = this.state;
+    const { sizeX, sizeY, posX, posY } = this.state;
     this.setState({
       isDrawing: !1
     })
-    this.props.bake(<Rect />)
+    this.props.bake(
+      <Rect
+        x={posX}
+        y={posY}
+        width={sizeX}
+        height={sizeY}
+        stroke={"black"}
+        strokeWidth={"0.6"}
+        opacity={0.7}
+        cornerRadius={"0"}
+      />
+    )
   }
   render() {
     const { sizeX, sizeY, posX, posY, isDrawing } = this.state;
+    const { activeDrawTool } = this.props;
     return (
       <section
         onMouseDown={this.onMouseDown}
         onMouseUp={this.onMouseUp}
         onMouseMove={this.onMouseMove}
-        className="canvas">
+        className={`canvas${activeDrawTool ? ' active' : ''}`}>
         <Stage width={500} height={500}>
           <Layer>
             <Rect
@@ -51,7 +63,7 @@ class Canvas extends Component {
               width={sizeX}
               height={sizeY}
               stroke={"black"}
-              strokeWidth={"0.6"}
+              strokeWidth={"1"}
               opacity={0.7}
               cornerRadius={"0"}
             />
